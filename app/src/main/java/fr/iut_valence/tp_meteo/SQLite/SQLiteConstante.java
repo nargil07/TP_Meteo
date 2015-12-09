@@ -9,4 +9,5 @@ public interface SQLiteConstante {
     String TABLE_STATION = "station";
     String TABLE_STATION_CHAMP_ID = "identifiant";
     String TABLE_STATION_CHAMP_LIBELLE = "libelle";
+    String TABLE_STATION_CHAMP_DATE = "date";
 }

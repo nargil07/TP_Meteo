@@ -1,4 +1,4 @@
-package fr.iut_valence.tp_meteo.metier;
+package fr.iut_valence.tp_meteo.entity;
 
 import java.io.Serializable;
 
@@ -8,13 +8,15 @@ import java.io.Serializable;
 public class Station implements Serializable {
     String identifiant;
     String libelle;
+    long date;
 
     public Station() {
     }
 
-    public Station(String libelle, String identifiant) {
+    public Station(String libelle, String identifiant, long date) {
         this.libelle = libelle;
         this.identifiant = identifiant;
+        this.date = date;
     }
 
     public String getIdentifiant() {

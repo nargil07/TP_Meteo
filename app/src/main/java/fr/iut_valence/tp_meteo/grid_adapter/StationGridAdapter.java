@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.antony.tp_meteo.R;
 import fr.iut_valence.tp_meteo.list_adapter.StationViewHolder;
-import fr.iut_valence.tp_meteo.metier.Station;
+import fr.iut_valence.tp_meteo.entity.Station;
 
 import java.util.ArrayList;
 

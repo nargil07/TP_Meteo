@@ -15,8 +15,8 @@ import com.example.antony.tp_meteo.R;
 
 import fr.iut_valence.tp_meteo.grid_adapter.StationGridAdapter;
 import fr.iut_valence.tp_meteo.list_adapter.StationAdapter;
-import fr.iut_valence.tp_meteo.metier.Mesure;
-import fr.iut_valence.tp_meteo.metier.Station;
+import fr.iut_valence.tp_meteo.entity.Mesure;
+import fr.iut_valence.tp_meteo.entity.Station;
 
 import java.util.ArrayList;
 

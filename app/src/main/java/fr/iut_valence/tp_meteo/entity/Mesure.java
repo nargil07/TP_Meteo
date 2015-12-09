@@ -1,4 +1,4 @@
-package fr.iut_valence.tp_meteo.metier;
+package fr.iut_valence.tp_meteo.entity;
 
 import java.io.Serializable;
 

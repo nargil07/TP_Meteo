@@ -6,8 +6,7 @@ import android.widget.ListView;
 
 import com.example.antony.tp_meteo.R;
 
-import fr.iut_valence.tp_meteo.list_adapter.MesureAdapter;
-import fr.iut_valence.tp_meteo.metier.Station;
+import fr.iut_valence.tp_meteo.entity.Station;
 
 public class ListMesureActivity extends AppCompatActivity {
 
