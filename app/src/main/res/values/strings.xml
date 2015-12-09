@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TP-Meteo</string>
+    <string name="affiche_station">List station</string>
+</resources>
