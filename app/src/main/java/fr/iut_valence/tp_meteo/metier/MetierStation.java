@@ -33,4 +33,23 @@ public class MetierStation {
         return stationDAO.getAll();
 
     }
+
+    public List<Station> getAllFavoris(){
+        return stationDAO.getByIdFavoris(1);
+    }
+
+    public void addStation(String identifiant, String libelle){
+        Station station = new Station(libelle, identifiant, 0, (short) 0);
+        stationDAO.add(station);
+    }
+
+    public void addToFavoris(Station station){
+        station.setFavoris(1);
+        stationDAO.update(station);
+    }
+
+    public void removeToFavoris(Station station){
+        station.setFavoris(0);
+        stationDAO.update(station);
+    }
 }

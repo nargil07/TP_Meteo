@@ -17,6 +17,7 @@ import fr.iut_valence.tp_meteo.grid_adapter.StationGridAdapter;
 import fr.iut_valence.tp_meteo.list_adapter.StationAdapter;
 import fr.iut_valence.tp_meteo.entity.Mesure;
 import fr.iut_valence.tp_meteo.entity.Station;
+import fr.iut_valence.tp_meteo.metier.MetierStation;
 
 import java.util.ArrayList;
 
@@ -24,17 +25,17 @@ public class ListStationActivity extends AppCompatActivity {
 
     ListView listView_station;
     GridView gridView_station;
-    ArrayList<Station> list_station = new ArrayList<>();
+    ArrayList<Station> list_station;
+    private MetierStation metierStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_station);
+        metierStation = new MetierStation(this);
 
-        ArrayList<Mesure> mesureArrayList = new ArrayList<>();
-        mesureArrayList.add(new Mesure("2015-10-25 10:00:00", "5.5", "4", "1008", null, null, null, null));
+        list_station = new ArrayList<>(metierStation.getAll());
 
-        list_station.add(new Station("Montélimar", "Les station du sud"));
         gridView_station = (GridView) findViewById(R.id.gridView_station);
         gridView_station.setAdapter(new StationGridAdapter(list_station, this));
         gridView_station.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,7 +48,7 @@ public class ListStationActivity extends AppCompatActivity {
             }
         });
         listView_station = (ListView) findViewById(R.id.listView_station);
-        listView_station.setAdapter(new StationAdapter(list_station, this));
+        listView_station.setAdapter(new StationAdapter(list_station, this, metierStation));
         listView_station.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

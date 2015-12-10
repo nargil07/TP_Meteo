@@ -9,14 +9,16 @@ public class Station implements Serializable {
     String identifiant;
     String libelle;
     long date;
+    int favoris;
 
     public Station() {
     }
 
-    public Station(String libelle, String identifiant, long date) {
+    public Station(String libelle, String identifiant, long date, short favoris) {
         this.libelle = libelle;
         this.identifiant = identifiant;
         this.date = date;
+        this.favoris = favoris;
     }
 
     public String getIdentifiant() {
@@ -33,5 +35,19 @@ public class Station implements Serializable {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public int getFavoris() { return favoris; }
+
+    public void setFavoris(int favoris) {
+        this.favoris = favoris;
+    }
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 }
