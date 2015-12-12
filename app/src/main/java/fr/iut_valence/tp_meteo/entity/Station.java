@@ -3,18 +3,43 @@ package fr.iut_valence.tp_meteo.entity;
 import java.io.Serializable;
 
 /**
- * Created by antony on 19/11/2015.
+ *
+ * Cette classe représente une station.
+ * @author Antony
+ * @version 1.0.4
  */
 public class Station implements Serializable {
+    /**
+     * L'identifiant de la station.
+     */
     String identifiant;
+    /**
+     * Un libelle de la station
+     */
     String libelle;
+    /**
+     * Cette variable represente la date de la derniere récupération des mesures liée à la station.
+     */
     long date;
+    /**
+     * Cette variable indique si la station est dans les favoris
+     */
     int favoris;
 
+    /**
+     * Instanciation d'une station vide
+     */
     public Station() {
     }
 
-    public Station(String libelle, String identifiant, long date, short favoris) {
+    /**
+     * Instanciation d'une station.
+     * @param libelle le libelle de la station
+     * @param identifiant l'identifiant de la station
+     * @param date la date de la derniere mise a jour
+     * @param favoris Si la station est dans les favoris
+     */
+    public Station(String libelle, String identifiant, long date, int favoris) {
         this.libelle = libelle;
         this.identifiant = identifiant;
         this.date = date;

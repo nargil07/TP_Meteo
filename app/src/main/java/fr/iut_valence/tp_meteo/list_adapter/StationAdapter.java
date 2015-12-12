@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.antony.tp_meteo.R;
 import fr.iut_valence.tp_meteo.entity.Station;
+import fr.iut_valence.tp_meteo.enumerator.EnumFavorisStation;
 import fr.iut_valence.tp_meteo.metier.MetierStation;
 
 import java.util.ArrayList;
@@ -65,17 +66,17 @@ public class StationAdapter extends BaseAdapter{
 
         holder.tvIdentifiant.setText(station.getIdentifiant());
         holder.tvLibelle.setText(station.getLibelle());
-        if(station.getFavoris() == 1){
+        if(station.getFavoris() == EnumFavorisStation.FAVORIS.ordinal()){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                holder.ivFavoris.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_black_48dp));
+                holder.ivFavoris.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_black_24dp));
             }else{
-                holder.ivFavoris.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_black_48dp));
+                holder.ivFavoris.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
             }
         }else{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                holder.ivFavoris.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_border_black_48dp));
+                holder.ivFavoris.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_border_black_24dp));
             }else{
-                holder.ivFavoris.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_48dp));
+                holder.ivFavoris.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
             }
         }
 
@@ -83,19 +84,19 @@ public class StationAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 ImageView view = (ImageView) v;
-                if(station.getFavoris() == 0){
+                if(station.getFavoris() == EnumFavorisStation.NO_FAVORIS.ordinal()){
                     metierStation.addToFavoris(station);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        view.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_black_48dp));
+                        view.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_black_24dp));
                     }else{
-                        view.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_black_48dp));
+                        view.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
                     }
                 }else{
                     metierStation.removeToFavoris(station);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        view.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_border_black_48dp));
+                        view.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_border_black_24dp));
                     }else{
-                        view.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_48dp));
+                        view.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
                     }
                 }
             }

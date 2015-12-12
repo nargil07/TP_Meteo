@@ -8,6 +8,7 @@ import java.util.List;
 
 import fr.iut_valence.tp_meteo.SQLite.DAO.StationDAO;
 import fr.iut_valence.tp_meteo.entity.Station;
+import fr.iut_valence.tp_meteo.enumerator.EnumFavorisStation;
 
 /**
  * Created by Antony on 09/12/2015.
@@ -35,21 +36,21 @@ public class MetierStation {
     }
 
     public List<Station> getAllFavoris(){
-        return stationDAO.getByIdFavoris(1);
+        return stationDAO.getByIdFavoris(EnumFavorisStation.FAVORIS.ordinal());
     }
 
     public void addStation(String identifiant, String libelle){
-        Station station = new Station(libelle, identifiant, 0, (short) 0);
+        Station station = new Station(libelle, identifiant, 0, EnumFavorisStation.NO_FAVORIS.ordinal());
         stationDAO.add(station);
     }
 
     public void addToFavoris(Station station){
-        station.setFavoris(1);
+        station.setFavoris(EnumFavorisStation.FAVORIS.ordinal());
         stationDAO.update(station);
     }
 
     public void removeToFavoris(Station station){
-        station.setFavoris(0);
+        station.setFavoris(EnumFavorisStation.NO_FAVORIS.ordinal());
         stationDAO.update(station);
     }
 }

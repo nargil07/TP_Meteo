@@ -65,7 +65,7 @@ public class StationDAO extends AbstractDAO<Station> {
         List<Station> list = new ArrayList<>();
         Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS}, null, null, null, null, null);
         while (c.moveToNext()){
-            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getShort(3)));
+            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3)));
         }
         this.close();
         return list;
@@ -76,7 +76,7 @@ public class StationDAO extends AbstractDAO<Station> {
         List<Station> list = new ArrayList<>();
         Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS}, TABLE_STATION_CHAMP_FAVORIS + " = ?", new String[]{String.valueOf(i)}, null, null, null);
         while (c.moveToNext()){
-            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getShort(3)));
+            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3)));
         }
         this.close();
         return list;
