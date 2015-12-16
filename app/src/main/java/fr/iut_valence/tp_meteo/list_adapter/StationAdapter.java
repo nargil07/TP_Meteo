@@ -3,6 +3,7 @@ package fr.iut_valence.tp_meteo.list_adapter;
 import android.content.Context;
 import android.media.Image;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.antony.tp_meteo.R;
+
+import fr.iut_valence.tp_meteo.entity.Mesure;
 import fr.iut_valence.tp_meteo.entity.Station;
 import fr.iut_valence.tp_meteo.enumerator.EnumFavorisStation;
+import fr.iut_valence.tp_meteo.metier.MetierMesure;
 import fr.iut_valence.tp_meteo.metier.MetierStation;
 
+import java.io.Console;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by antony on 19/11/2015.
@@ -25,11 +31,13 @@ public class StationAdapter extends BaseAdapter{
     private LayoutInflater layoutInflater;
     private Context context;
     private MetierStation metierStation;
+    private MetierMesure metierMesure;
     public StationAdapter(ArrayList<Station> listStation, Context context, MetierStation metierStation) {
         this.listStation = listStation;
         this.context = context;
         this.metierStation = metierStation;
         this.layoutInflater = LayoutInflater.from(context);
+        this.metierMesure = new MetierMesure(context);
     }
 
     @Override
@@ -66,6 +74,10 @@ public class StationAdapter extends BaseAdapter{
 
         holder.tvIdentifiant.setText(station.getIdentifiant());
         holder.tvLibelle.setText(station.getLibelle());
+        List<Mesure> listmesures = metierMesure.getLast(station.getIdentifiant());
+        for(Mesure mesure : listmesures){
+            Log.d("STATIONADAPTER", String.valueOf(mesure.getTemp1()));
+        }
         if(station.getFavoris() == EnumFavorisStation.FAVORIS.ordinal()){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 holder.ivFavoris.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_black_24dp));

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import fr.iut_valence.tp_meteo.entity.Station;
 import fr.iut_valence.tp_meteo.list_adapter.StationAdapter;
+import fr.iut_valence.tp_meteo.metier.MetierMesure;
 import fr.iut_valence.tp_meteo.metier.MetierStation;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,12 +21,16 @@ public class MainActivity extends AppCompatActivity {
     ListView listview_favoris;
     Button button_list_station;
     MetierStation metierStation;
+    MetierMesure metierMesure;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         metierStation = new MetierStation(this);
+
+
         listview_favoris = (ListView) findViewById(R.id.listview_favoris);
 
     }

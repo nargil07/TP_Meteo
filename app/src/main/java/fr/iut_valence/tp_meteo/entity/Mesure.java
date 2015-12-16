@@ -7,19 +7,21 @@ import java.io.Serializable;
  */
 public class Mesure implements Serializable{
 
-    private String quand;
-    private String temp1;
-    private String temp2;
-    private String pressure;
-    private String lux;
-    private String hygro;
-    private String windDir;
-    private String windSpeed;
+    private String station;
+    private long quand;
+    private float temp1;
+    private float temp2;
+    private int pressure;
+    private float lux;
+    private float hygro;
+    private float windDir;
+    private float windSpeed;
 
     public Mesure() {
     }
 
-    public Mesure(String quand, String temp1, String temp2, String pressure, String lux, String hygro, String windDir, String windSpeed) {
+    public Mesure(String station, long quand, float temp1, float temp2, int pressure, float lux, float hygro, float windDir, float windSpeed) {
+        this.station = station;
         this.quand = quand;
         this.temp1 = temp1;
         this.temp2 = temp2;
@@ -30,67 +32,75 @@ public class Mesure implements Serializable{
         this.windSpeed = windSpeed;
     }
 
-    public String getQuand() {
+    public String getStation() {
+        return station;
+    }
+
+    public void setStation(String station) {
+        this.station = station;
+    }
+
+    public long getQuand() {
         return quand;
     }
 
-    public void setQuand(String quand) {
+    public void setQuand(long quand) {
         this.quand = quand;
     }
 
-    public String getTemp1() {
+    public float getTemp1() {
         return temp1;
     }
 
-    public void setTemp1(String temp1) {
+    public void setTemp1(float temp1) {
         this.temp1 = temp1;
     }
 
-    public String getTemp2() {
+    public float getTemp2() {
         return temp2;
     }
 
-    public void setTemp2(String temp2) {
+    public void setTemp2(float temp2) {
         this.temp2 = temp2;
     }
 
-    public String getPressure() {
+    public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(String pressure) {
+    public void setPressure(int pressure) {
         this.pressure = pressure;
     }
 
-    public String getLux() {
+    public float getLux() {
         return lux;
     }
 
-    public void setLux(String lux) {
+    public void setLux(float lux) {
         this.lux = lux;
     }
 
-    public String getHygro() {
+    public float getHygro() {
         return hygro;
     }
 
-    public void setHygro(String hygro) {
+    public void setHygro(float hygro) {
         this.hygro = hygro;
     }
 
-    public String getWindDir() {
+    public float getWindDir() {
         return windDir;
     }
 
-    public void setWindDir(String windDir) {
+    public void setWindDir(float windDir) {
         this.windDir = windDir;
     }
 
-    public String getWindSpeed() {
+    public float getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(String windSpeed) {
+    public void setWindSpeed(float windSpeed) {
         this.windSpeed = windSpeed;
     }
 }

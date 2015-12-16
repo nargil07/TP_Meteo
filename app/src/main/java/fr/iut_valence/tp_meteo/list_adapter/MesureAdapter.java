@@ -54,8 +54,8 @@ public class MesureAdapter extends BaseAdapter {
             mesureViewHolder =(MesureViewHolder) convertView.getTag();
         }
         Mesure mesure = mesureArrayList.get(position);
-        mesureViewHolder.tvTemp1.setText(mesure.getTemp1());
-        mesureViewHolder.tvTemp2.setText(mesure.getTemp2());
+        mesureViewHolder.tvTemp1.setText(String.valueOf(mesure.getTemp1()));
+        mesureViewHolder.tvTemp2.setText(String.valueOf(mesure.getTemp2()));
         mesureViewHolder.tvPressure.setText(mesure.getPressure());
         return convertView;
     }
