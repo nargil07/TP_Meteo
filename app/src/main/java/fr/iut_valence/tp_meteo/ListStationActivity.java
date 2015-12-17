@@ -33,31 +33,11 @@ public class ListStationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_station);
         metierStation = new MetierStation(this);
-
         list_station = new ArrayList<>(metierStation.getAll());
-
         gridView_station = (GridView) findViewById(R.id.gridView_station);
         gridView_station.setAdapter(new StationGridAdapter(list_station, this));
-        gridView_station.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                StationGridAdapter stationAdapter = (StationGridAdapter) parent.getAdapter();
-                Intent i = new Intent(getApplicationContext(), ListMesureActivity.class);
-                i.putExtra("station", stationAdapter.getItem(position));
-                startActivity(i);
-            }
-        });
         listView_station = (ListView) findViewById(R.id.listView_station);
         listView_station.setAdapter(new StationAdapter(list_station, this, metierStation));
-        listView_station.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                StationAdapter stationAdapter = (StationAdapter) parent.getAdapter();
-                Intent i = new Intent(getApplicationContext(), ListMesureActivity.class);
-                i.putExtra("station", stationAdapter.getItem(position));
-                startActivity(i);
-            }
-        });
     }
 
     @Override

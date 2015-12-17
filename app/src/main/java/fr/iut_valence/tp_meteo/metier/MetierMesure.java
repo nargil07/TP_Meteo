@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.iut_valence.tp_meteo.SQLite.DAO.MesureDAO;
 import fr.iut_valence.tp_meteo.entity.Mesure;
+import fr.iut_valence.tp_meteo.entity.Station;
 
 /**
  * Created by Antony on 13/12/2015.
@@ -21,7 +22,11 @@ public class MetierMesure {
         mesureDAO.add(new Mesure(station, quand, temp1, temp2, pressure, lux, hygro, windDir, windSpeed));
     }
 
-    public List<Mesure> getLast(String station){
-        return mesureDAO.getLast(station);
+    public List<Mesure> getLast(Station station){
+        return mesureDAO.getLast(station.getIdentifiant());
+    }
+
+    public List<Mesure> getAll(Station station){
+        return mesureDAO.getByIdStation(station.getIdentifiant(), -1);
     }
 }
