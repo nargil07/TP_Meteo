@@ -1,6 +1,7 @@
 package fr.iut_valence.tp_meteo;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,11 +34,8 @@ public class ListStationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_station);
         metierStation = new MetierStation(this);
-        list_station = new ArrayList<>(metierStation.getAll());
-        gridView_station = (GridView) findViewById(R.id.gridView_station);
-        gridView_station.setAdapter(new StationGridAdapter(list_station, this));
-        listView_station = (ListView) findViewById(R.id.listView_station);
-        listView_station.setAdapter(new StationAdapter(list_station, this, metierStation));
+        new StationDownloadTask().execute();
+
     }
 
     @Override
@@ -50,9 +48,6 @@ public class ListStationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
-                return true;
 
             case R.id.change_view:
 
@@ -72,6 +67,23 @@ public class ListStationActivity extends AppCompatActivity {
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
 
+        }
+    }
+
+    private class StationDownloadTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            gridView_station = (GridView) findViewById(R.id.gridView_station);
+            gridView_station.setAdapter(new StationGridAdapter(list_station, getApplicationContext()));
+            listView_station = (ListView) findViewById(R.id.listView_station);
+            listView_station.setAdapter(new StationAdapter(list_station, getApplicationContext(), metierStation));
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            list_station = new ArrayList<>(metierStation.getAll());
+            return null;
         }
     }
 }

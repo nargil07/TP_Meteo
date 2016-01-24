@@ -5,9 +5,4 @@
         android:icon="@drawable/ic_apps_white_48dp"
         android:title="@string/affiche_station"
         app:showAsAction="ifRoom"/>
-
-    <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/action_settings"
-        android:title="@string/app_name"
-        app:showAsAction="never"/>
 </menu>
