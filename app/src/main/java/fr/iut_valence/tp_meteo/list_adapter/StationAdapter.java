@@ -79,7 +79,8 @@ public class StationAdapter extends BaseAdapter{
         holder.lnClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, ListMesureActivity.class);
+                Intent i = new Intent(context.getApplicationContext(), ListMesureActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("station", station);
                 context.startActivity(i);
             }

@@ -35,7 +35,6 @@ public class ListStationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_station);
         metierStation = new MetierStation(this);
         new StationDownloadTask().execute();
-
     }
 
     @Override
