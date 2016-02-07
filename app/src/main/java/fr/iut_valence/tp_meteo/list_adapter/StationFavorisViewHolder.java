@@ -10,6 +10,5 @@ import android.widget.TextView;
 public class StationFavorisViewHolder {
     public TextView tvIdentifiant;
     public TextView tvLibelle;
-    public ListView lvMesures;
 
 }

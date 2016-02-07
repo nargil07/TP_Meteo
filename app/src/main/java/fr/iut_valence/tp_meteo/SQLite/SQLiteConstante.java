@@ -5,12 +5,15 @@ package fr.iut_valence.tp_meteo.SQLite;
  */
 public interface SQLiteConstante {
     String DB_NAME = "tp_meteo";
-    int DB_VERSION = 6;
+    int DB_VERSION = 7;
 
     //Table station
     String TABLE_STATION = "station";
     String TABLE_STATION_CHAMP_ID = "identifiant";
     String TABLE_STATION_CHAMP_LIBELLE = "libelle";
+    String TABLE_STATION_CHAMP_LATITUDE = "latitude";
+    String TABLE_STATION_CHAMP_LONGITUDE = "longitude";
+    String TABLE_STATION_CHAMP_ALTITUDE = "altitude";
     String TABLE_STATION_CHAMP_DATE = "date";
     String TABLE_STATION_CHAMP_FAVORIS = "favoris";
 

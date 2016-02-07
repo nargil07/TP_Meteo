@@ -25,6 +25,18 @@ public class Station implements Serializable {
      * Cette variable indique si la station est dans les favoris
      */
     int favoris;
+    /**
+     *
+     */
+    String latitude;
+    /**
+     *
+     */
+    String longitude;
+    /**
+     *
+     */
+    String altitude;
 
     /**
      * Instanciation d'une station vide
@@ -39,11 +51,14 @@ public class Station implements Serializable {
      * @param date la date de la derniere mise a jour
      * @param favoris Si la station est dans les favoris
      */
-    public Station(String libelle, String identifiant, long date, int favoris) {
-        this.libelle = libelle;
+    public Station(String identifiant, String libelle, long date, int favoris, String latitude, String longitude, String altitude) {
         this.identifiant = identifiant;
+        this.libelle = libelle;
         this.date = date;
         this.favoris = favoris;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.altitude = altitude;
     }
 
     public String getIdentifiant() {
@@ -74,5 +89,29 @@ public class Station implements Serializable {
 
     public void setDate(long date) {
         this.date = date;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(String altitude) {
+        this.altitude = altitude;
     }
 }

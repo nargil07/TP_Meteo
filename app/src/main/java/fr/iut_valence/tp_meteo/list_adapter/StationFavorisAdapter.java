@@ -59,13 +59,11 @@ public class StationFavorisAdapter extends BaseAdapter{
 
         StationFavorisViewHolder holder;
         final Station station = listStation.get(position);
-        final ServiceStation serviceStation = new ServiceStation(context, station);
         if(convertView == null){
             convertView =layoutInflater.inflate(R.layout.elem_station, null);
             holder = new StationFavorisViewHolder();
             holder.tvIdentifiant = (TextView) convertView.findViewById(R.id.textView_identifiant);
             holder.tvLibelle = (TextView) convertView.findViewById(R.id.textView_libelle);
-            holder.lvMesures = (ListView) convertView.findViewById(R.id.listViewMesu);
             convertView.setTag(holder);
         }else{
             holder = (StationFavorisViewHolder) convertView.getTag();
@@ -73,7 +71,6 @@ public class StationFavorisAdapter extends BaseAdapter{
 
         holder.tvIdentifiant.setText(station.getIdentifiant());
         holder.tvLibelle.setText(station.getLibelle());
-        holder.lvMesures.setAdapter(new MesureAdapter(context, new ArrayList<Mesure>(serviceStation.getLast())));
         return convertView;
     }
 }

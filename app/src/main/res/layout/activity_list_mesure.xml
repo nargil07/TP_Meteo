@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textView2" />
+            android:id="@+id/textViewIdStation" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textView4" />
+            android:id="@+id/textViewLibelleStation" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textView6" />
+            android:id="@+id/textViewLattitude" />
 
     </LinearLayout>
 
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textView8" />
+            android:id="@+id/textViewLongitude" />
     </LinearLayout>
 
     <LinearLayout
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textView10" />
+            android:id="@+id/textViewAltitude" />
     </LinearLayout>
 
     <ListView

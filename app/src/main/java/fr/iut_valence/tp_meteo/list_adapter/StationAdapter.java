@@ -60,7 +60,6 @@ public class StationAdapter extends BaseAdapter{
 
         StationViewHolder holder;
         final Station station = listStation.get(position);
-        final ServiceStation serviceStation = new ServiceStation(context, station);
         if(convertView == null){
             convertView =layoutInflater.inflate(R.layout.elem_station_favoris, null);
             holder = new StationViewHolder();
@@ -68,7 +67,6 @@ public class StationAdapter extends BaseAdapter{
             holder.tvLibelle = (TextView) convertView.findViewById(R.id.textView_libelle);
             holder.ivFavoris = (ImageView) convertView.findViewById(R.id.imageViewfavoris);
             holder.lnClick = (LinearLayout) convertView.findViewById(R.id.linearClick);
-            holder.lvMesures = (ListView) convertView.findViewById(R.id.listViewMesu);
             convertView.setTag(holder);
         }else{
             holder = (StationViewHolder) convertView.getTag();
@@ -85,7 +83,7 @@ public class StationAdapter extends BaseAdapter{
                 context.startActivity(i);
             }
         });
-        holder.lvMesures.setAdapter(new MesureAdapter(context, new ArrayList<Mesure>(serviceStation.getLast())));
+
         if(station.getFavoris() == EnumFavorisStation.FAVORIS.ordinal()){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 holder.ivFavoris.setImageDrawable(context.getDrawable(R.drawable.ic_favorite_black_24dp));

@@ -28,7 +28,7 @@ public class StationDAO extends AbstractDAO<Station> {
 
         Station station = null;
         while (c.moveToNext()){
-            station = new Station(c.getString(1), c.getString(0), c.getLong(2), c.getShort(3));
+            station = new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6));
         }
         this.close();
         return station;
@@ -63,9 +63,9 @@ public class StationDAO extends AbstractDAO<Station> {
     public List<Station> getAll() {
         this.open();
         List<Station> list = new ArrayList<>();
-        Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS}, null, null, null, null, null);
+        Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS, TABLE_STATION_CHAMP_LATITUDE, TABLE_STATION_CHAMP_LONGITUDE, TABLE_STATION_CHAMP_ALTITUDE}, null, null, null, null, null);
         while (c.moveToNext()){
-            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3)));
+            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6)));
         }
         this.close();
         return list;
@@ -74,9 +74,9 @@ public class StationDAO extends AbstractDAO<Station> {
     public List<Station> getByIdFavoris(int i){
         this.open();
         List<Station> list = new ArrayList<>();
-        Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS}, TABLE_STATION_CHAMP_FAVORIS + " = ?", new String[]{String.valueOf(i)}, null, null, null);
+        Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS, TABLE_STATION_CHAMP_LATITUDE, TABLE_STATION_CHAMP_LONGITUDE, TABLE_STATION_CHAMP_ALTITUDE}, TABLE_STATION_CHAMP_FAVORIS + " = ?", new String[]{String.valueOf(i)}, null, null, null);
         while (c.moveToNext()){
-            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3)));
+            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6)));
         }
         this.close();
         return list;

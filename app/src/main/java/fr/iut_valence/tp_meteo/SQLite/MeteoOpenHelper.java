@@ -11,6 +11,9 @@ public class MeteoOpenHelper extends SQLiteOpenHelper implements SQLiteConstante
     private static final String CREATE_TABLE_STATION = "CREATE TABLE IF NOT EXISTS " + TABLE_STATION + " ('" + TABLE_STATION_CHAMP_ID +
             "' TEXT NOT NULL PRIMARY KEY, '" +
             TABLE_STATION_CHAMP_LIBELLE + "' TEXT NOT NULL, '" +
+            TABLE_STATION_CHAMP_LATITUDE + "' TEXT, '" +
+            TABLE_STATION_CHAMP_LONGITUDE + "' TEXT, '" +
+            TABLE_STATION_CHAMP_ALTITUDE + "' TEXT, '" +
             TABLE_STATION_CHAMP_DATE + "' INTEGER, " +
             TABLE_STATION_CHAMP_FAVORIS + " INTEGER);";
     private static final String CREATE_TABLE_MESURES = "CREATE TABLE IF NOT EXISTS " + TABLE_MESURES + " ('" + TABLE_MESURES_STATION +
@@ -36,7 +39,7 @@ public class MeteoOpenHelper extends SQLiteOpenHelper implements SQLiteConstante
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESURES);
         db.execSQL(CREATE_TABLE_STATION);
         db.execSQL(CREATE_TABLE_MESURES);

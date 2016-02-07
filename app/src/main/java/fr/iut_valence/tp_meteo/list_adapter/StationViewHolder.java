@@ -13,6 +13,5 @@ public class StationViewHolder {
     public TextView tvLibelle;
     public LinearLayout lnClick;
     public ImageView ivFavoris;
-    public ListView lvMesures;
 
 }

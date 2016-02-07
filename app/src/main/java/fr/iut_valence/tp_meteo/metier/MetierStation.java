@@ -98,7 +98,11 @@ public class MetierStation {
     }
 
     public void addStation(String identifiant, String libelle){
-        Station station = new Station(libelle, identifiant, 0, EnumFavorisStation.NO_FAVORIS.ordinal());
+        Station station = new Station();
+        station.setLibelle(libelle);
+        station.setIdentifiant(identifiant);
+        station.setDate(0);
+        station.setFavoris(0);
         stationDAO.add(station);
     }
 
