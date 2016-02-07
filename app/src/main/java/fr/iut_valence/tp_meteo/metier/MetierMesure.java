@@ -2,6 +2,10 @@ package fr.iut_valence.tp_meteo.metier;
 
 import android.content.Context;
 
+import org.json.JSONArray;
+
+import java.net.URL;
+import java.util.Calendar;
 import java.util.List;
 
 import fr.iut_valence.tp_meteo.SQLite.DAO.MesureDAO;
@@ -23,6 +27,11 @@ public class MetierMesure {
     }
 
     public List<Mesure> getLast(Station station){
+        if (station.getDate() < Calendar.getInstance().getTimeInMillis() - (24 * 60 * 60 * 1000)){
+            String url_select = "http://intranet.iut-valence.fr/~marcanto/TP-Meteo/index.php?";
+            URL url = null;
+            JSONArray jsonArray = null;
+        }
         return mesureDAO.getLast(station.getIdentifiant());
     }
 
