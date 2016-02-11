@@ -9,4 +9,8 @@ public class MesureViewHolder {
     public TextView tvTemp1;
     public TextView tvTemp2;
     public TextView tvPressure;
+    public TextView tvLux;
+    public TextView tvHydro;
+    public TextView tvWindSpeed;
+    public TextView tvWindDir;
 }

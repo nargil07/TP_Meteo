@@ -5,7 +5,7 @@ package fr.iut_valence.tp_meteo.SQLite;
  */
 public interface SQLiteConstante {
     String DB_NAME = "tp_meteo";
-    int DB_VERSION = 7;
+    int DB_VERSION = 8;
 
     //Table station
     String TABLE_STATION = "station";

@@ -30,16 +30,16 @@ import fr.iut_valence.tp_meteo.metier.MetierStation;
  */
 public class ServiceStation {
 
-    private final Station station;
+    private Station station;
     private final MetierMesure metierMesure;
     private final StationDAO stationDAO;
 
     public ServiceStation(Context context, Station station) {
-        this.station = station;
         this.metierMesure = new MetierMesure(context);
         this.stationDAO = new StationDAO(context);
-        if(this.station.getDate() <= Calendar.getInstance().getTimeInMillis() - (24 * 60 * 60 * 1000)){
-            String url_select = "http://intranet.iut-valence.fr/~marcanto/TP-Meteo/index.php?station=" + station.getLibelle();
+        this.station = stationDAO.get(station.getIdentifiant());
+        if(station.getDate() <= Calendar.getInstance().getTimeInMillis() - (24 * 60 * 60 * 1000)){
+            String url_select = "http://intranet.iut-valence.fr/~marcanto/TP-Meteo/index.php?station=" + station.getIdentifiant();
             URL url;
             try {
                 url = new URL(url_select);
@@ -62,12 +62,11 @@ public class ServiceStation {
                     responseStrBuilder.append(inputString);
                 }
                 JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
-                this.station.setLibelle(jsonObject.getString("libellé"));
-                this.station.setLatitude(jsonObject.getString("latitude"));
-                this.station.setLongitude(jsonObject.getString("longitude"));
-                this.station.setAltitude(jsonObject.getString("altitude"));
-                this.station.setDate(Calendar.getInstance().getTimeInMillis());
-                this.stationDAO.update(this.station);
+                station.setLibelle(jsonObject.getString("libellé"));
+                station.setLatitude(jsonObject.getString("latitude"));
+                station.setLongitude(jsonObject.getString("longitude"));
+                station.setAltitude(jsonObject.getString("altitude"));
+                this.stationDAO.update(station);
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -79,6 +78,12 @@ public class ServiceStation {
                 e.printStackTrace();
             }
         }
+        station = this.stationDAO.get(station.getIdentifiant());
+        this.station = station;
+    }
+
+    public Station getStation() {
+        return station;
     }
 
     public List<Mesure> getLast(){

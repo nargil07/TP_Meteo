@@ -1,5 +1,7 @@
 package fr.iut_valence.tp_meteo;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,24 +44,39 @@ public class ListMesureActivity extends AppCompatActivity {
         station = (Station) getIntent().getSerializableExtra("station");
         tvId.setText(station.getIdentifiant());
         tvLibelle.setText(station.getLibelle());
-        tvLattitude.setText(station.getLatitude());
-        tvLongitude.setText(station.getLongitude());
-        tvAltitude.setText(station.getAltitude());
         new AsyncMesures().execute();
 
 
     }
 
     private class AsyncMesures extends AsyncTask<Void, Void, Void>{
+        private ProgressDialog progressDialog = new ProgressDialog(ListMesureActivity.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Téléchargement en cours ...");
+            progressDialog.show();
+            progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                public void onCancel(DialogInterface arg0) {
+                    AsyncMesures.this.cancel(true);
+                }
+            });
+        }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             listViewMesures.setAdapter(new MesureAdapter(getApplicationContext(), (ArrayList<Mesure>) mesureList));
+
+            tvLattitude.setText(station.getLatitude());
+            tvLongitude.setText(station.getLongitude());
+            tvAltitude.setText(station.getAltitude());
+            progressDialog.cancel();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             serviceStation = new ServiceStation(getApplicationContext(), station);
+            station = serviceStation.getStation();
             mesureList = new ArrayList<Mesure>(serviceStation.getLast());
             return null;
         }

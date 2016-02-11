@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import fr.iut_valence.tp_meteo.SQLite.DAO.MesureDAO;
+import fr.iut_valence.tp_meteo.SQLite.DAO.StationDAO;
 import fr.iut_valence.tp_meteo.entity.Mesure;
 import fr.iut_valence.tp_meteo.entity.Station;
 
@@ -27,9 +28,11 @@ import fr.iut_valence.tp_meteo.entity.Station;
  */
 public class MetierMesure {
     private final MesureDAO mesureDAO;
+    private final StationDAO stationDAO;
 
     public MetierMesure(Context context) {
         this.mesureDAO = new MesureDAO(context);
+        this.stationDAO = new StationDAO(context);
     }
 
     public void addMesure(String station, long quand, float temp1, float temp2, int pressure, float lux, float hygro, float windDir, float windSpeed){
@@ -65,16 +68,19 @@ public class MetierMesure {
                 for(int i = 0; i < jsonArray.length(); ++i){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Mesure mesure = new Mesure();
-                    mesure.setQuand(jsonObject.getLong("quand"));
-                    mesure.setTemp1((float) jsonObject.getDouble("temp1"));
-                    mesure.setTemp2((float) jsonObject.getDouble("temp2"));
+                    mesure.setStation(station.getIdentifiant());
+                    mesure.setQuand(Long.getLong(jsonObject.getString("quand"), 0));
+                    mesure.setTemp1(jsonObject.getString("temp1") != "null" ? Float.parseFloat(jsonObject.getString("temp1")) : 0);
+                    mesure.setTemp2(jsonObject.getString("temp2") != "null" ? Float.parseFloat(jsonObject.getString("temp2")) : 0);
                     mesure.setPressure(jsonObject.getInt("pressure"));
-                    mesure.setLux((float) jsonObject.getDouble("lux"));
-                    mesure.setHygro((float) jsonObject.getDouble("hygro"));
-                    mesure.setWindSpeed((float)jsonObject.getDouble("windSpeed"));
-                    mesure.setWindDir((float)jsonObject.getDouble("windDir"));
+                    mesure.setLux(jsonObject.getString("lux") != "null" ? Float.parseFloat(jsonObject.getString("lux")) : 0);
+                    mesure.setHygro(jsonObject.getString("hygro") != "null" ? Float.parseFloat(jsonObject.getString("hygro")) : 0);
+                    mesure.setWindSpeed(jsonObject.getString("windSpeed") != "null" ? Float.parseFloat(jsonObject.getString("windSpeed")) : 0);
+                    mesure.setWindDir(jsonObject.getString("windDir") != "null" ? Float.parseFloat(jsonObject.getString("windDir")) : 0);
                     this.mesureDAO.add(mesure);
                 }
+                station.setDate(Calendar.getInstance().getTimeInMillis());
+                this.stationDAO.update(station);
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

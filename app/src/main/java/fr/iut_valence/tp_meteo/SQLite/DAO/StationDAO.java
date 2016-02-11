@@ -24,11 +24,11 @@ public class StationDAO extends AbstractDAO<Station> {
     @Override
     public Station get(String id) {
         this.open();
-        Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS}, TABLE_STATION_CHAMP_ID + " = ?", new String[]{id}, null, null, null);
+        Cursor c = this.bdd.query(TABLE_STATION,  new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS, TABLE_STATION_CHAMP_LATITUDE, TABLE_STATION_CHAMP_LONGITUDE, TABLE_STATION_CHAMP_ALTITUDE}, TABLE_STATION_CHAMP_ID + " = ?", new String[]{id}, null, null, null);
 
         Station station = null;
         while (c.moveToNext()){
-            station = new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6));
+            station = new Station(c.getString(0), c.getString(1), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6));
         }
         this.close();
         return station;
@@ -41,6 +41,9 @@ public class StationDAO extends AbstractDAO<Station> {
         contentValues.put(TABLE_STATION_CHAMP_LIBELLE, entity.getLibelle());
         contentValues.put(TABLE_STATION_CHAMP_DATE, entity.getDate());
         contentValues.put(TABLE_STATION_CHAMP_FAVORIS, entity.getFavoris());
+        contentValues.put(TABLE_STATION_CHAMP_LATITUDE, entity.getLatitude());
+        contentValues.put(TABLE_STATION_CHAMP_LONGITUDE, entity.getLongitude());
+        contentValues.put(TABLE_STATION_CHAMP_ALTITUDE, entity.getAltitude());
         this.bdd.update(TABLE_STATION, contentValues, TABLE_STATION_CHAMP_ID + " = ?", new String[]{entity.getIdentifiant()});
         this.close();
     }
@@ -65,7 +68,7 @@ public class StationDAO extends AbstractDAO<Station> {
         List<Station> list = new ArrayList<>();
         Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS, TABLE_STATION_CHAMP_LATITUDE, TABLE_STATION_CHAMP_LONGITUDE, TABLE_STATION_CHAMP_ALTITUDE}, null, null, null, null, null);
         while (c.moveToNext()){
-            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6)));
+            list.add(new Station(c.getString(0), c.getString(1), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6)));
         }
         this.close();
         return list;
@@ -76,7 +79,7 @@ public class StationDAO extends AbstractDAO<Station> {
         List<Station> list = new ArrayList<>();
         Cursor c = this.bdd.query(TABLE_STATION, new String[]{TABLE_STATION_CHAMP_ID, TABLE_STATION_CHAMP_LIBELLE, TABLE_STATION_CHAMP_DATE, TABLE_STATION_CHAMP_FAVORIS, TABLE_STATION_CHAMP_LATITUDE, TABLE_STATION_CHAMP_LONGITUDE, TABLE_STATION_CHAMP_ALTITUDE}, TABLE_STATION_CHAMP_FAVORIS + " = ?", new String[]{String.valueOf(i)}, null, null, null);
         while (c.moveToNext()){
-            list.add(new Station(c.getString(1), c.getString(0), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6)));
+            list.add(new Station(c.getString(0), c.getString(1), c.getLong(2), c.getInt(3), c.getString(4), c.getString(5), c.getString(6)));
         }
         this.close();
         return list;

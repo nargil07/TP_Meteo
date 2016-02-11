@@ -1,5 +1,7 @@
 package fr.iut_valence.tp_meteo;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -70,13 +72,25 @@ public class ListStationActivity extends AppCompatActivity {
     }
 
     private class StationDownloadTask extends AsyncTask<Void, Void, Void> {
-
+        private ProgressDialog progressDialog = new ProgressDialog(ListStationActivity.this);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Téléchargement en cours ...");
+            progressDialog.show();
+            progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                public void onCancel(DialogInterface arg0) {
+                    StationDownloadTask.this.cancel(true);
+                }
+            });
+        }
         @Override
         protected void onPostExecute(Void aVoid) {
             gridView_station = (GridView) findViewById(R.id.gridView_station);
             gridView_station.setAdapter(new StationGridAdapter(list_station, getApplicationContext()));
             listView_station = (ListView) findViewById(R.id.listView_station);
             listView_station.setAdapter(new StationAdapter(list_station, getApplicationContext(), metierStation));
+            progressDialog.cancel();
         }
 
         @Override

@@ -49,6 +49,10 @@ public class MesureAdapter extends BaseAdapter {
             mesureViewHolder.tvTemp1 = (TextView) convertView.findViewById(R.id.textViewTemp1);
             mesureViewHolder.tvTemp2 = (TextView) convertView.findViewById(R.id.textViewTemp2);
             mesureViewHolder.tvPressure = (TextView) convertView.findViewById(R.id.textViewPressure);
+            mesureViewHolder.tvLux = (TextView) convertView.findViewById(R.id.textViewLux);
+            mesureViewHolder.tvHydro = (TextView) convertView.findViewById(R.id.textViewHydro);
+            mesureViewHolder.tvWindDir = (TextView) convertView.findViewById(R.id.textViewWindDir);
+            mesureViewHolder.tvWindSpeed = (TextView) convertView.findViewById(R.id.textViewWindSpeed);
             convertView.setTag(mesureViewHolder);
         }else{
             mesureViewHolder =(MesureViewHolder) convertView.getTag();
@@ -57,6 +61,10 @@ public class MesureAdapter extends BaseAdapter {
         mesureViewHolder.tvTemp1.setText(String.valueOf(mesure.getTemp1()));
         mesureViewHolder.tvTemp2.setText(String.valueOf(mesure.getTemp2()));
         mesureViewHolder.tvPressure.setText(String.valueOf(mesure.getPressure()));
+        mesureViewHolder.tvLux.setText(String.valueOf(mesure.getLux()));
+        mesureViewHolder.tvHydro.setText(String.valueOf(mesure.getHygro()));
+        mesureViewHolder.tvWindDir.setText(String.valueOf(mesure.getWindDir()));
+        mesureViewHolder.tvWindSpeed.setText(String.valueOf(mesure.getWindSpeed()));
         return convertView;
     }
 }

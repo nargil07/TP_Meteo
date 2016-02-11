@@ -76,6 +76,9 @@ public class MetierStation {
                         stationDAO.add(station);
                     }
                 }
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putLong("last_update_stations", Calendar.getInstance().getTimeInMillis());
+                editor.commit();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
@@ -85,10 +88,7 @@ public class MetierStation {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putLong("last_update_stations", Calendar.getInstance().getTimeInMillis());
-            editor.commit();
-            m = sharedPreferences.getAll();
+
         }
         return stationDAO.getAll();
     }
