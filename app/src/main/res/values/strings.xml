@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TP-Meteo</string>
-    <string name="affiche_station">List station</string>
+    <string name="affiche_station">Afficher Stations</string>
+    <string name="favoris">Favoris</string>
 </resources>

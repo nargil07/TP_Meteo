@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle(R.string.favoris);
         metierStation = new MetierStation(this);
         listview_favoris = (ListView) findViewById(R.id.listview_favoris);
         listview_favoris.setOnItemClickListener(new AdapterView.OnItemClickListener() {

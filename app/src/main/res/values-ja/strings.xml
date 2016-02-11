@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">天気</string>
+    <string name="affiche_station">表示ステーション</string>
+    <string name="favoris">お気に入り</string>
+</resources>
